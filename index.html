@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg1:#071028;
-    --bg2:#0b2340;
+    --bg2:#0b23440;
     --treeGreen1:#0b7a33;
     --treeGreen2:#0e5b29;
     --gold:#f5d76e;
@@ -21,6 +21,20 @@
     background: linear-gradient(180deg,var(--bg1),var(--bg2));
     color:#fff;
     overflow:hidden;
+  }
+
+  /* ★ 新增：顶部标题样式 */
+  .top-title{
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    z-index: 9999;
+    text-shadow: 0 0 12px rgba(255,255,255,0.75);
+    pointer-events: none;
   }
 
   .stage{
@@ -95,6 +109,7 @@
   .tree-body{
     filter: drop-shadow(0 30px 30px rgba(3,20,10,0.6));
   }
+
   /* ornaments & lights */
   .ornament{
     transform-origin:center;
@@ -144,7 +159,6 @@
     font-weight:600;font-size:15px; opacity:0.95;
   }
 
-  /* responsive tweaks */
   @media (max-width:420px){
     .star{ width:64px;height:64px; top:4%; }
     .gifts .gift{ width:48px;height:38px; }
@@ -154,14 +168,19 @@
 </style>
 </head>
 <body>
+
+<!-- ★ 新增：顶部标题（居中显示） -->
+<div class="top-title">送给许正云小朋友的圣诞树~</div>
+
 <div class="stage">
   <div class="card" id="card" role="application" aria-label="炫酷圣诞树演示 - 点击切换灯光">
     <div class="caption">Merry Christmas 🎄 — 点击画面切换灯光</div>
 
     <div class="tree-wrap" id="treeWrap">
+
       <!-- Star -->
       <div class="star" aria-hidden="true">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <g transform="translate(32,32)">
             <path d="M0,-12 L3,-4 12,-4 5,1 8,10 0,4 -8,10 -5,1 -12,-4 -3,-4 Z" fill="url(#g1)"/>
             <defs>
@@ -176,7 +195,7 @@
       </div>
 
       <!-- Tree SVG -->
-      <svg class="tree-svg" viewBox="0 0 600 800" aria-hidden="false" role="img">
+      <svg class="tree-svg" viewBox="0 0 600 800">
         <defs>
           <linearGradient id="leafGrad" x1="0" x2="0" y1="0" y2="1">
             <stop offset="0%" stop-color="#2ecc71"/>
@@ -185,18 +204,14 @@
           </linearGradient>
         </defs>
 
-        <!-- tree layers (three big triangles) -->
         <g class="tree-body">
           <path d="M300 120 L110 330 L490 330 Z" fill="url(#leafGrad)"/>
           <path d="M300 240 L80 470 L520 470 Z" fill="url(#leafGrad)" opacity="0.98"/>
           <path d="M300 370 L40 660 L560 660 Z" fill="url(#leafGrad)" opacity="0.96"/>
-          <!-- trunk -->
           <rect x="260" y="660" width="80" height="90" rx="10" fill="#5b2d11"/>
         </g>
 
-        <!-- ornaments (circles) -->
         <g id="ornaments">
-          <!-- placed at various positions on the tree -->
           <circle class="ornament light" cx="300" cy="200" r="10" fill="#ff5d6c" />
           <circle class="ornament light" cx="240" cy="230" r="9" fill="#ffd36b" />
           <circle class="ornament light" cx="360" cy="250" r="11" fill="#6ae3ff" />
@@ -209,30 +224,26 @@
           <circle class="ornament light" cx="410" cy="520" r="10" fill="#ffd76e" />
         </g>
 
-        <!-- some garland paths -->
         <g stroke="#ffeaa7" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9">
-          <path d="M140,300 q120,40 320,0" stroke-linejoin="round" stroke-opacity="0.6"/>
+          <path d="M140,300 q120,40 320,0" stroke-opacity="0.6"/>
           <path d="M100,420 q150,50 380,0" stroke-opacity="0.5"/>
           <path d="M80,540 q170,60 420,0" stroke-opacity="0.45"/>
         </g>
-
       </svg>
 
-      <!-- gifts -->
-      <div class="gifts" aria-hidden="true">
-        <div class="gift" style="background:linear-gradient(180deg,#ff6b6b,#c93a3a)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#fff" d="M12 7l0 10M4 7h16" stroke="#fff" stroke-width="0"/></svg></div>
-        <div class="gift" style="background:linear-gradient(180deg,#ffe76e,#d59c34)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#6b3b00" d="M12 7l0 10M4 7h16" /></svg></div>
-        <div class="gift" style="background:linear-gradient(180deg,#6bd1ff,#1f9ad1)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#fff" d="M12 7l0 10M4 7h16" /></svg></div>
+      <div class="gifts">
+        <div class="gift" style="background:linear-gradient(180deg,#ff6b6b,#c93a3a)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#fff" d="M12 7l0 10M4 7h16"/></svg></div>
+        <div class="gift" style="background:linear-gradient(180deg,#ffe76e,#d59c34)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#6b3b00" d="M12 7l0 10M4 7h16"/></svg></div>
+        <div class="gift" style="background:linear-gradient(180deg,#6bd1ff,#1f9ad1)"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="#fff" d="M12 7l0 10M4 7h16"/></svg></div>
       </div>
+
     </div>
 
-    <!-- snow layer -->
     <div class="snow" id="snow"></div>
 
-    <!-- controls -->
     <div class="controls" id="controls">
-      <button class="btn" id="toggleLights" title="切换灯光">🎇 灯光</button>
-      <button class="btn" id="toggleMusic" title="播放 / 暂停背景音乐">🎵 音乐</button>
+      <button class="btn" id="toggleLights">🎇 灯光</button>
+      <button class="btn" id="toggleMusic">🎵 音乐</button>
     </div>
 
   </div>
@@ -258,7 +269,6 @@ for(let i=0;i<snowCount;i++){
 const lights = Array.from(document.querySelectorAll('.ornament.light'));
 let lightsOn = true;
 function flickerOnce(el, delay){
-  const base = 0.5 + Math.random()*0.9;
   el.style.transition = 'transform 0.18s ease, opacity 0.18s linear, filter 0.18s linear';
   setTimeout(()=>{
     el.style.opacity = 0.5 + Math.random()*0.7;
@@ -280,7 +290,6 @@ let flickerTimer = setInterval(randomFlicker, 450);
 /* toggle by tapping the big card */
 const card = document.getElementById('card');
 card.addEventListener('click', (e)=>{
-  // ignore clicks on control buttons
   if(e.target.closest('.controls')) return;
   lightsOn = !lightsOn;
   if(!lightsOn){
@@ -301,15 +310,17 @@ document.getElementById('toggleLights').addEventListener('click', (ev)=>{
   }
 });
 
-/* little buoy motion for ornaments */
-lights.forEach((el, idx)=>{
+/* buoy motion */
+lights.forEach((el)=>{
   const range = 6 + Math.random()*10;
-  (function loop(i){
-    el.animate([{ transform:'translateY(0px) scale(1)' }, { transform:'translateY(' + (range/2) + 'px) scale(0.98)' }, { transform:'translateY(0px) scale(1)' }], { duration: 2600 + Math.random()*2600, iterations: Infinity, delay: Math.random()*800 });
-  })(idx);
+  el.animate([
+    { transform:'translateY(0px) scale(1)' },
+    { transform:'translateY(' + (range/2) + 'px) scale(0.98)' },
+    { transform:'translateY(0px) scale(1)' }
+  ], { duration: 2600 + Math.random()*2600, iterations: Infinity, delay: Math.random()*800 });
 });
 
-/* ---------- simple WebAudio melody (no external file) ---------- */
+/* ---------- simple melody ---------- */
 let audioCtx = null;
 let playing = false;
 let masterGain;
@@ -323,7 +334,6 @@ document.getElementById('toggleMusic').addEventListener('click', async (ev)=>{
     masterGain.connect(audioCtx.destination);
   }
   if(!playing){
-    // resume if suspended (browsers require user gesture - we have it)
     if(audioCtx.state === 'suspended') await audioCtx.resume();
     startMelody();
   } else {
@@ -333,15 +343,14 @@ document.getElementById('toggleMusic').addEventListener('click', async (ev)=>{
 
 function startMelody(){
   playing = true;
-  // simple arpeggio pattern (major-ish)
-  const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5 - pleasant triad arpeggio
+  const notes = [440, 554.37, 659.25, 880];
   let idx = 0;
   melodyInterval = setInterval(()=> {
     const t = audioCtx.currentTime;
     const osc = audioCtx.createOscillator();
     const g = audioCtx.createGain();
     osc.type = 'sine';
-    osc.frequency.value = notes[idx % notes.length] * (Math.random()<0.12?0.5:1); // occasional lower note
+    osc.frequency.value = notes[idx % notes.length] * (Math.random()<0.12?0.5:1);
     g.gain.value = 0;
     osc.connect(g); g.connect(masterGain);
     osc.start(t);
@@ -359,20 +368,17 @@ function stopMelody(){
   document.getElementById('toggleMusic').textContent = '🎵 音乐';
 }
 
-/* ---------- small entrance animation ---------- */
+/* ---------- entrance animation ---------- */
 window.addEventListener('load', ()=>{
   setTimeout(()=> {
-    document.querySelector('.card').animate([{ transform:'scale(0.98)' }, { transform:'scale(1)' }], { duration:450, easing:'cubic-bezier(.2,.8,.2,1)' });
+    document.querySelector('.card').animate(
+      [{ transform:'scale(0.98)' }, { transform:'scale(1)' }],
+      { duration:450, easing:'cubic-bezier(.2,.8,.2,1)' }
+    );
   }, 120);
 });
 
-/* ---------- accessibility: keyboard toggles ---------- */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'm') document.getElementById('toggleMusic').click();
-  if(e.key === 'l') document.getElementById('toggleLights').click();
-});
-
-/* ---------- small performance: stop snow animation when tab hidden ---------- */
+/* ---------- tab visibility ---------- */
 document.addEventListener('visibilitychange', ()=>{
   if(document.hidden){
     snow.querySelectorAll('i').forEach((s)=> s.style.animationPlayState='paused');
@@ -383,5 +389,6 @@ document.addEventListener('visibilitychange', ()=>{
   }
 });
 </script>
+
 </body>
 </html>
