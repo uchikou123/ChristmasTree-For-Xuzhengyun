@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>炫酷圣诞树</title>
+<title>许正云的小圣诞树</title>
 <style>
   :root{
     --bg1:#071028;
@@ -23,26 +23,26 @@
     overflow:hidden;
   }
 
-  /* ★ 顶部可爱发光标题（已下移） */
+  /* ★ 顶部标题（字体变小，确保一行显示） */
   .top-title{
     position: fixed;
-    top: 32px;        /* <-- 已下移，看起来更舒服 */
+    top: 32px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 26px;
+    font-size: 22px;          /* <-- 已调整到一行刚好显示 */
     font-weight: 800;
+    white-space: nowrap;      /* 强制不换行 */
     color: #ffffff;
     z-index: 9999;
     letter-spacing: 1px;
     text-shadow: 
-        0 0 10px rgba(255,255,255,0.9),
-        0 0 20px rgba(255,255,255,0.6),
-        0 0 30px rgba(150,200,255,0.5);
+        0 0 10px rgba(255,255,255,0.8),
+        0 0 20px rgba(255,255,255,0.5),
+        0 0 28px rgba(150,200,255,0.5);
     animation: glowPulse 3s ease-in-out infinite;
     pointer-events: none;
   }
 
-  /* ★ 缓慢呼吸光动画 */
   @keyframes glowPulse{
     0%   { opacity: 0.92; transform: translateX(-50%) scale(1); }
     50%  { opacity: 1; transform: translateX(-50%) scale(1.04); }
@@ -71,7 +71,6 @@
     align-items:center;
     justify-content:center;
     overflow:hidden;
-    touch-action: manipulation;
   }
 
   /* Snow */
@@ -89,7 +88,6 @@
     to{ transform: translateY(120vh) rotate(180deg); opacity:0.2; }
   }
 
-  /* Tree container */
   .tree-wrap{
     width:78%;
     max-width:720px;
@@ -116,90 +114,46 @@
     100%{ transform:scale(1); opacity:1; filter:brightness(1.2); }
   }
 
-  /* tree SVG */
   svg.tree-svg{ width:86%; height:auto; display:block; transform:translateY(6%); }
   .tree-body{
     filter: drop-shadow(0 30px 30px rgba(3,20,10,0.6));
   }
 
+  /* lights */
   .ornament{
     transform-origin:center;
     transition: transform 0.28s ease;
     will-change:transform;
   }
 
-  .ornament:active{ transform: scale(1.12); }
-
-  .gifts{
-    position:absolute;
-    bottom:6%;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:12px;
-    align-items:flex-end;
-  }
-
-  .gift{
-    width:68px;height:52px;border-radius:6px;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 20px rgba(0,0,0,0.35);
-    transform-origin:center;
-  }
-
-  .controls{
-    position:absolute;
-    right:12px;
-    bottom:12px;
-    display:flex;
-    gap:10px;
-    z-index:30;
-  }
-  .btn{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.06);
-    color:#fff;padding:10px 12px;border-radius:10px;font-size:13px;
-    display:flex;gap:8px;align-items:center;backdrop-filter:blur(6px);
-  }
-  .btn:active{ transform:translateY(1px); }
-
-  .caption{
-    position:absolute;
-    top:12px; left:12px;
-    font-weight:600;font-size:15px; opacity:0.95;
-  }
-
-  @media (max-width:420px){
-    .top-title{ font-size:20px; top: 26px; }
-  }
-
 </style>
 </head>
 <body>
 
-<!-- ★★★ 顶部发光标题（加可爱雪花） ★★★ -->
+<!-- ★★★ 顶部标题（保持雪花可爱风） ★★★ -->
 <div class="top-title">❄️ 送给许正云小朋友的圣诞树 ~ ❄️</div>
 
 <div class="stage">
-  <div class="card" id="card" role="application">
-
-    <div class="caption">Merry Christmas 🎄 — 点击画面切换灯光</div>
+  <div class="card" id="card">
 
     <div class="tree-wrap" id="treeWrap">
 
       <!-- Star -->
-      <div class="star"><svg viewBox="0 0 64 64">
-        <g transform="translate(32,32)">
-          <path d="M0,-12 L3,-4 12,-4 5,1 8,10 0,4 -8,10 -5,1 -12,-4 -3,-4 Z" fill="url(#g1)"/>
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-              <stop offset="0%" stop-color="#fff7d6"/>
-              <stop offset="50%" stop-color="#ffd86b"/>
-              <stop offset="100%" stop-color="#ffb84b"/>
-            </linearGradient>
-          </defs>
-        </g>
-      </svg></div>
+      <div class="star">
+        <svg viewBox="0 0 64 64">
+          <g transform="translate(32,32)">
+            <path d="M0,-12 L3,-4 12,-4 5,1 8,10 0,4 -8,10 -5,1 -12,-4 -3,-4 Z"
+              fill="url(#g1)"/>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fff7d6"/>
+                <stop offset="50%" stop-color="#ffd86b"/>
+                <stop offset="100%" stop-color="#ffb84b"/>
+              </linearGradient>
+            </defs>
+          </g>
+        </svg>
+      </div>
 
       <!-- Tree -->
       <svg class="tree-svg" viewBox="0 0 600 800">
@@ -218,6 +172,7 @@
           <rect x="260" y="660" width="80" height="90" rx="10" fill="#5b2d11"/>
         </g>
 
+        <!-- Lights -->
         <g id="ornaments">
           <circle class="ornament light" cx="300" cy="200" r="10" fill="#ff5d6c" />
           <circle class="ornament light" cx="240" cy="230" r="9" fill="#ffd36b" />
@@ -238,20 +193,9 @@
         </g>
       </svg>
 
-      <div class="gifts">
-        <div class="gift" style="background:linear-gradient(180deg,#ff6b6b,#c93a3a)"></div>
-        <div class="gift" style="background:linear-gradient(180deg,#ffe76e,#d59c34)"></div>
-        <div class="gift" style="background:linear-gradient(180deg,#6bd1ff,#1f9ad1)"></div>
-      </div>
-
     </div>
 
     <div class="snow" id="snow"></div>
-
-    <div class="controls" id="controls">
-      <button class="btn" id="toggleLights">🎇 灯光</button>
-      <button class="btn" id="toggleMusic">🎵 音乐</button>
-    </div>
 
   </div>
 </div>
@@ -272,79 +216,18 @@ for(let i=0;i<snowCount;i++){
   snow.appendChild(s);
 }
 
-/* Lights flicker */
+/* Light flicker */
 const lights = [...document.querySelectorAll('.ornament.light')];
-let lightsOn = true;
-
-function flicker(el, delay){
-  el.style.transition = '0.25s';
-  setTimeout(()=>{
-    el.style.opacity = 0.5 + Math.random()*0.7;
-    el.style.transform = 'scale('+(0.92 + Math.random()*0.2)+')';
-    setTimeout(()=>{ if(lightsOn){ el.style.opacity=1; el.style.transform='scale(1)'; }}, 250);
-  }, delay);
-}
-
 setInterval(()=>{
-  if(!lightsOn) return;
   const n = 1 + Math.floor(Math.random()*3);
   for(let i=0;i<n;i++){
-    flicker(lights[Math.floor(Math.random()*lights.length)], Math.random()*700);
+    const el = lights[Math.floor(Math.random()*lights.length)];
+    el.style.transition = '0.25s';
+    el.style.opacity = 0.5 + Math.random()*0.7;
+    el.style.transform = 'scale('+(0.92 + Math.random()*0.2)+')';
+    setTimeout(()=>{ el.style.opacity=1; el.style.transform='scale(1)'; }, 250);
   }
 },450);
-
-/* Toggle */
-document.getElementById('toggleLights').onclick = () => {
-  lightsOn = !lightsOn;
-  lights.forEach(l => {
-    if(lightsOn){
-      l.style.opacity = 1; l.style.filter=''; l.style.transform='scale(1)';
-    } else {
-      l.style.opacity = 0.25; l.style.filter='grayscale(0.6)'; l.style.transform='scale(0.9)';
-    }
-  });
-};
-
-/* Music */
-let audioCtx = null, playing=false, masterGain, melodyInterval;
-document.getElementById('toggleMusic').onclick = async ()=>{
-  if(!audioCtx){
-    audioCtx = new (window.AudioContext||window.webkitAudioContext)();
-    masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0.08;
-    masterGain.connect(audioCtx.destination);
-  }
-  if(!playing){
-    if(audioCtx.state==='suspended') await audioCtx.resume();
-    startMelody();
-  } else stopMelody();
-};
-function startMelody(){
-  playing = true;
-  const notes = [440,554.37,659.25,880];
-  let i=0;
-  melodyInterval = setInterval(()=>{
-    const t = audioCtx.currentTime;
-    const osc = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    osc.type='sine';
-    osc.frequency.value = notes[i%notes.length] * (Math.random()<0.12?0.5:1);
-    g.gain.value=0;
-    osc.connect(g); g.connect(masterGain);
-    osc.start(t);
-    g.gain.linearRampToValueAtTime(1, t+0.02);
-    g.gain.linearRampToValueAtTime(0.0001, t+0.9);
-    osc.stop(t+1.02);
-    i++;
-  },420);
-  document.getElementById('toggleMusic').textContent="⏸ 音乐";
-}
-function stopMelody(){
-  playing=false;
-  clearInterval(melodyInterval);
-  document.getElementById('toggleMusic').textContent="🎵 音乐";
-}
-
 </script>
 
 </body>
